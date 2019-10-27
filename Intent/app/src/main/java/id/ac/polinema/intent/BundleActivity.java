@@ -1,20 +1,24 @@
 package  id.ac.polinema.intent;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BundleActivity extends AppCompatActivity {
-    public static final String USERNAME_KEY = "username";
-    public static final String NAME_KEY = "name";
-    public static final String AGE_KEY = "age";
 
+    public static final String USERNAME_KEY = "username";
+    public static final String NAME_KEY ="name";
+    public static final String AGE_KEY="age";
     private EditText usernameInput;
     private EditText nameInput;
     private EditText ageInput;
+    private TextView usernameText;
+    private TextView nameText;
+    private TextView ageText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +30,22 @@ public class BundleActivity extends AppCompatActivity {
     }
 
     public void handleSubmit(View view) {
-        String username = usernameInput.getText().toString();
-        String name = nameInput.getText().toString();
-        int age = Integer.parseInt(ageInput.getText().toString());
-
+//        Intent intent= new Intent(this,ProfileBundleActivity.class);
+//        String username =usernameInput.getText().toString();
+//        String name = nameInput.getText().toString();
+//        int age = Integer.parseInt(ageInput.getText().toString());
+//
+//        usernameText.setText(username);
+//        nameText.setText(name);
+//        ageText.setText(age);
+//        startActivity(intent);
+        Bundle bundle = new Bundle();
+        bundle.putString("username", usernameInput.getText().toString());
+        bundle.putString("name", nameInput.getText().toString());
+        bundle.putString("age", ageInput.getText().toString());
         Intent intent = new Intent(this, ProfileBundleActivity.class);
-        intent.putExtra(USERNAME_KEY, username);
-        intent.putExtra(NAME_KEY, name);
-        intent.putExtra(AGE_KEY, age);
-
+        intent.putExtras(bundle);
         startActivity(intent);
     }
+
 }
